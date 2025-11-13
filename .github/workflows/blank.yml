@@ -1,0 +1,36 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:      # allows you to run it manually with a button
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # TODO: Add your own build steps here
+      # Example for a Gradle Android project:
+      # - name: Set up JDK
+      #   uses: actions/setup-java@v4
+      #   with:
+      #     distribution: temurin
+      #     java-version: 17
+      #
+      # - name: Build APK
+      #   run: ./gradlew assembleRelease
+
+      # For Unity you'd run your Unity build command instead and point
+      # path: to where the .apk ends up.
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-apk
+          path: |
+            /1.apk
